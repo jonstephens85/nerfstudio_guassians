@@ -122,7 +122,7 @@ ns-download-data nerfstudio --capture-name=poster
 This downloads a folder of data into: /nerfstudio/data/nerfstudio/poster.  The result should look like this:
 <img src="assets/Folderdata.png" width="50%"/>
 
-If you want to use your own data, check out the "Using your own data" section.
+If you want to use your own data, check out the [Using Custom Data](#using-custom-data) section.
 
 # Train the gaussian splat
 Next, you will initiate training of the gaussian splat scene.
@@ -134,38 +134,48 @@ ns-train gaussian-splatting --data data/nerfstudio/poster
 If everything works, you should see training progress like the following:
 
 <p align="center">
-    <img width="800" alt="image" src="https://user-images.githubusercontent.com/3310961/202766069-cadfd34f-8833-4156-88b7-ad406d688fc0.png">
+    <img width="800" alt="image" src="assets/TrainingCode.png">
 </p>
 
 Navigating to the link at the end of the terminal will load the webviewer. If you are running on a remote machine, you will need to port forward the websocket port (defaults to 7007).
 
+**Note:** At the time of writing this guide, there is a bug where some people will see `0.0.0.0:7007` for the link. Replace the 0.0.0.0 with your IPv4 address. Here are [instruction](https://support.microsoft.com/en-us/windows/find-your-ip-address-in-windows-f21a9bbc-c582-55cd-35e0-73431160a1b9) to find your IP address.
+
 <p align="center">
-    <img width="800" alt="image" src="https://user-images.githubusercontent.com/3310961/202766653-586a0daa-466b-4140-a136-6b02f2ce2c54.png">
+    <img width="800" alt="image" src="assets/visualizer.png">
 </p>
+
+**Note:** The webviewer will slow down the performance of the model training.
 
 ### Resume from checkpoint / visualize existing run
 
-It is possible to load a pretrained model by running
+It is possible to resume training a checkpoint by running
 
 ```bash
-ns-train nerfacto --data data/nerfstudio/poster --load-dir {outputs/.../nerfstudio_models}
+ns-train gaussian-splatting --data data/nerfstudio/poster --load-dir {outputs/.../nerfstudio_models}
 ```
 
-## Visualize existing run
-
-Given a pretrained model checkpoint, you can start the viewer by running
+You can launch any pre-trained model checkpoint into the viewer without initiating further training by running
 
 ```bash
 ns-viewer --load-config {outputs/.../config.yml} --vis viewer_beta
 ```
 
-## 3. Exporting Results
+This is recommended if you want to load a project you fully trained in command line and are coming back to later visualize and create video renders.
 
-Once you have a NeRF model you can either render out a video or export a gaussian splat ply.
+## Exporting Results
+
+Once you have a gaussian splatting scene trained, you can either render out a video or export the gaussian splats ply file to view in other platforms such as Unity and UE5.
 
 ### Render Video
 
-First we must create a path for the camera to follow. This can be done in the viewer under the "RENDER" tab. Orient your 3D view to the location where you wish the video to start, then press "ADD CAMERA". This will set the first camera key frame. Continue to new viewpoints adding additional cameras to create the camera path. We provide other parameters to further refine your camera path. Once satisfied, press "RENDER" which will display a modal that contains the command needed to render the video. Kill the training job (or create a new terminal if you have lots of compute) and run the command to generate the video.
+First we must create a path for the camera to follow. This can be done in the viewer under the "RENDER" tab. Orient your 3D view to the location where you wish the video to start, then press **"Add Keyframe"**. This will set the first camera key frame. Continue to new viewpoints adding additional cameras to create the camera path. Nerfstudio provides other parameters to further refine your camera path. You can press **"Preview Render"** and then **"Play"** to preview your camera sequence.
+
+Once satisfied, input a render name and then press **"Generate Command"** which will display a modal that contains the command needed to render the video. Ensure you copy and post this command into a notes doc as it's easy to lose once you close the viewer.
+
+Kill the training job by pushing `ctrl+C` in the command prompt window.
+
+Next, run the command you copied from the viewer to generate the video. A video will be rendered and it will display the location path.
 
 Other video export options are available, learn more by running
 
@@ -175,12 +185,13 @@ ns-render --help
 
 ### Generate a Guassian Splat
 
-Currently, this must be performed with command line. You can export the splat ply by running
+Currently, this must be performed with command line. The export section of the viewer does not function correctly with gaussin splats.
+
+You can export the splat ply by running
 
 ```bash
 ns-export gassian-splat --load-config {outputs/.../config.yml} --export-dir {path/to/directory}
 ```
-
 
 Learn about the export options by running
 
@@ -188,9 +199,18 @@ Learn about the export options by running
 ns-export gaussian-splat --help
 ```
 
-## 4. Using Custom Data
+## Modifying the Training Configuration
 
-Using an existing dataset is great, but likely you want to use your own data! We support various methods for using your own data. Before it can be used in nerfstudio, the camera location and orientations must be determined and then converted into our format using `ns-process-data`. We rely on external tools for this, instructions and information can be found in the documentation.
+The gaussian splatting training model contains many parameters that can be changed. Use the `--help` command to see the full list of configuration options.
+
+```bash
+ns-train gaussian-splatting --help
+```
+
+
+## Using Custom Data
+
+Using an existing dataset is great, but likely you want to use your own data! Nerfstudio supports various methods for using your own data. Before it can be used in nerfstudio, the camera location and orientations must be determined and then converted into our format using `ns-process-data`. Nerfstudio relies on external tools for this, instructions and information can be found in the documentation.
 
 | Data                                                                                          | Capture Device | Requirements                                                      | `ns-process-data` Speed |
 | --------------------------------------------------------------------------------------------- | -------------- | ----------------------------------------------------------------- | ----------------------- |
@@ -208,30 +228,12 @@ Using an existing dataset is great, but likely you want to use your own data! We
 | 🛠 [Custom](https://docs.nerf.studio/quickstart/data_conventions.html)                        | Any            | Camera Poses                                                      | 🐇                      |
 
 
-## 5. Advanced Options
 
-### Training models other than nerfacto
-
-We provide other models than nerfacto, for example if you want to train the original nerf model, use the following command
-
-```bash
-ns-train vanilla-nerf --data DATA_PATH
-```
-
-For a full list of included models run `ns-train --help`.
-
-### Modify Configuration
-
-Each model contains many parameters that can be changed, too many to list here. Use the `--help` command to see the full list of configuration options.
-
-```bash
-ns-train nerfacto --help
-```
 
 
 # Learn More
 
-And that's it for getting started with the basics of nerfstudio.
+And that's it for creating gaussian-splats with nerfstudio.
 
 If you're interested in learning more on how to create your own pipelines, develop with the viewer, run benchmarks, and more, please check out some of the quicklinks below or visit our [documentation](https://docs.nerf.studio/) directly.
 
