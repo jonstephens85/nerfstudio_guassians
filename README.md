@@ -1,56 +1,19 @@
-<p align="center">
-    <!-- community badges -->
-    <a href="https://discord.gg/uMbNqcraFc"><img src="https://img.shields.io/badge/Join-Discord-blue.svg"/></a>
-    <!-- doc badges -->
-    <a href='https://docs.nerf.studio/'>
-        <img src='https://readthedocs.com/projects/plenoptix-nerfstudio/badge/?version=latest' alt='Documentation Status' /></a>
-    <!-- pi package badge -->
-    <a href="https://badge.fury.io/py/nerfstudio"><img src="https://badge.fury.io/py/nerfstudio.svg" alt="PyPI version"></a>
-    <!-- code check badges -->
-    <a href='https://github.com/nerfstudio-project/nerfstudio/actions/workflows/core_code_checks.yml'>
-        <img src='https://github.com/nerfstudio-project/nerfstudio/actions/workflows/core_code_checks.yml/badge.svg' alt='Test Status' /></a>
-    <a href='https://github.com/nerfstudio-project/nerfstudio/actions/workflows/viewer_build_deploy.yml'>
-        <img src='https://github.com/nerfstudio-project/nerfstudio/actions/workflows/viewer_build_deploy.yml/badge.svg' alt='Viewer build Status' /></a>
-    <!-- license badge -->
-    <a href="https://github.com/nerfstudio-project/nerfstudio/blob/master/LICENSE">
-        <img alt="License" src="https://img.shields.io/badge/License-Apache_2.0-blue.svg"></a>
-</p>
+# An Unofficial Guide to Gaussian Splatting for Nerfstudio
 
-<p align="center">
-    <!-- pypi-strip -->
-    <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://docs.nerf.studio/_images/logo-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="https://docs.nerf.studio/_images/logo.png">
-    <!-- /pypi-strip -->
-    <img alt="nerfstudio" src="https://docs.nerf.studio/_images/logo.png" width="400">
-    <!-- pypi-strip -->
-    </picture>
-    <!-- /pypi-strip -->
-</p>
+### Read first
+__This is a forked tutorial guide and the main codes will not be updated__
 
-<!-- Use this for pypi package (and disable above). Hacky workaround -->
-<!-- <p align="center">
-    <img alt="nerfstudio" src="https://docs.nerf.studio/_images/logo.png" width="400">
-</p> -->
+This forked GitHub project is intented for folks who have little to know command-line knowledge and want to run Nerfstudio to create gaussian splats. If you have used Instant NGP, Nerfstudio, or other similar command-line based radiance field projects, most likely you have already installed some or all of the depedencies required for this project.
 
-<p align="center"> A collaboration friendly studio for NeRFs </p>
+I created two walkthrough videos to compliment the tutorial (coming soon). You can watch them independently or with this project page as reference. Please follow my YT channel for additional updates. Now let's get gaussian splatting with Nerfstudio!
 
-<p align="center">
-    <a href="https://docs.nerf.studio">
-        <img alt="documentation" src="https://user-images.githubusercontent.com/3310961/194022638-b591ce16-76e3-4ba6-9d70-3be252b36084.png" width="150"></a>
-    <a href="https://viewer.nerf.studio/">
-        <img alt="viewer" src="https://user-images.githubusercontent.com/3310961/194022636-a9efb85a-14fd-4002-8ed4-4ca434898b5a.png" width="150"></a>
-    <a href="https://colab.research.google.com/github/nerfstudio-project/nerfstudio/blob/main/colab/demo.ipynb">
-        <img alt="colab" src="https://raw.githubusercontent.com/nerfstudio-project/nerfstudio/main/docs/_static/imgs/readme_colab.png" width="150"></a>
-</p>
+The section below is from the original GitHub page. Jump down to [Overview](#overview) to get started. <br>
+<br>
+<br>
 
-<img src="https://user-images.githubusercontent.com/3310961/194017985-ade69503-9d68-46a2-b518-2db1a012f090.gif" width="52%"/> <img src="https://user-images.githubusercontent.com/3310961/194020648-7e5f380c-15ca-461d-8c1c-20beb586defe.gif" width="46%"/>
 
-- [Quickstart](#quickstart)
-- [Learn more](#learn-more)
-- [Supported Features](#supported-features)
 
-# About
+# About Nerfstudio
 
 _It’s as simple as plug and play with nerfstudio!_
 
@@ -68,40 +31,12 @@ Have feature requests? Want to add your brand-spankin'-new NeRF model? Have a ne
 Have feedback? We'd love for you to fill out our [Nerfstudio Feedback Form](https://forms.gle/sqN5phJN7LfQVwnP9) if you want to let us know who you are, why you are interested in Nerfstudio, or provide any feedback!
 
 We hope nerfstudio enables you to build faster :hammer: learn together :books: and contribute to our NeRF community :sparkling_heart:.
+<br>
+<br>
 
-## Sponsors
+# Getting Started
 
-Sponsors of this work includes [Luma AI](https://lumalabs.ai/) and the [BAIR commons](https://bcommons.berkeley.edu/home).
 
-<p align="left">
-    <a href="https://lumalabs.ai/">
-        <!-- pypi-strip -->
-        <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="docs/_static/imgs/luma_dark.png">
-        <source media="(prefers-color-scheme: light)" srcset="docs/_static/imgs/luma_light.png">
-        <!-- /pypi-strip -->
-        <img alt="Luma AI" src="docs/_static/imgs/luma_light.png" width="300">
-        <!-- pypi-strip -->
-        </picture>
-        <!-- /pypi-strip -->
-    </a>
-    <a href="https://bcommons.berkeley.edu/home">
-        <!-- pypi-strip -->
-        <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="docs/_static/imgs/bair_dark.png">
-        <source media="(prefers-color-scheme: light)" srcset="docs/_static/imgs/bair_light.png">
-        <!-- /pypi-strip -->
-        <img alt="BAIR" src="docs/_static/imgs/bair_light.png" width="300">
-        <!-- pypi-strip -->
-        </picture>
-        <!-- /pypi-strip -->
-    </a>
-</p>
-
-# Quickstart
-
-The quickstart will help you get started with the default vanilla NeRF trained on the classic Blender Lego scene.
-For more complex changes (e.g., running with your own data/setting up a new NeRF graph), please refer to our [references](#learn-more).
 
 ## 1. Installation: Setup the environment
 
@@ -123,6 +58,8 @@ pip install --upgrade pip
 
 Install PyTorch with CUDA (this repo has been tested with CUDA 11.7 and CUDA 11.8) and [tiny-cuda-nn](https://github.com/NVlabs/tiny-cuda-nn).
 `cuda-toolkit` is required for building `tiny-cuda-nn`.
+
+You can check which version of CUDA Toolkit you have installed by entering `nvcc --version` into command prompt. Use the instructions below that match your version of CUDA Toolkit to install PyTorch.
 
 For CUDA 11.7:
 
@@ -147,13 +84,8 @@ in the Installation documentation for more.
 
 ### Installing nerfstudio
 
-Easy option:
+You will need to build Nerfstudio from code to access guassian splatting.
 
-```bash
-pip install nerfstudio
-```
-
-**OR** if you want the latest and greatest:
 
 ```bash
 git clone https://github.com/nerfstudio-project/nerfstudio.git
@@ -162,9 +94,6 @@ pip install --upgrade pip setuptools
 pip install -e .
 ```
 
-**OR** if you want to skip all installation steps and directly start using nerfstudio, use the docker image:
-
-See [Installation](https://github.com/nerfstudio-project/nerfstudio/blob/main/docs/quickstart/installation.md) - **Use docker image**.
 
 ## 2. Training your first model!
 
@@ -202,12 +131,12 @@ ns-train nerfacto --data data/nerfstudio/poster --load-dir {outputs/.../nerfstud
 Given a pretrained model checkpoint, you can start the viewer by running
 
 ```bash
-ns-viewer --load-config {outputs/.../config.yml}
+ns-viewer --load-config {outputs/.../config.yml} --vis viewer_beta
 ```
 
 ## 3. Exporting Results
 
-Once you have a NeRF model you can either render out a video or export a point cloud.
+Once you have a NeRF model you can either render out a video or export a gaussian splat ply.
 
 ### Render Video
 
@@ -219,14 +148,19 @@ Other video export options are available, learn more by running
 ns-render --help
 ```
 
-### Generate Point Cloud
+### Generate a Guassian Splat
 
-While NeRF models are not designed to generate point clouds, it is still possible. Navigate to the "EXPORT" tab in the 3D viewer and select "POINT CLOUD". If the crop option is selected, everything in the yellow square will be exported into a point cloud. Modify the settings as desired then run the command at the bottom of the panel in your command line.
-
-Alternatively you can use the CLI without the viewer. Learn about the export options by running
+Currently, this must be performed with command line. You can export the splat ply by running
 
 ```bash
-ns-export pointcloud --help
+ns-export gassian-splat --load-config {outputs/.../config.yml} --export-dir {path/to/directory}
+```
+
+
+Learn about the export options by running
+
+```bash
+ns-export gaussian-splat --help
 ```
 
 ## 4. Using Custom Data
@@ -269,9 +203,6 @@ Each model contains many parameters that can be changed, too many to list here. 
 ns-train nerfacto --help
 ```
 
-### Tensorboard / WandB / Viewer
-
-We support four different methods to track training progress, using the viewer[tensorboard](https://www.tensorflow.org/tensorboard), [Weights and Biases](https://wandb.ai/site), and ,[Comet](https://comet.com/?utm_source=nerf&utm_medium=referral&utm_content=github). You can specify which visualizer to use by appending `--vis {viewer, tensorboard, wandb, comet viewer+wandb, viewer+tensorboard, viewer+comet}` to the training command. Simultaneously utilizing the viewer alongside wandb or tensorboard may cause stuttering issues during evaluation steps. The viewer only works for methods that are fast (ie. nerfacto, instant-ngp), for slower methods like NeRF, use the other loggers.
 
 # Learn More
 
@@ -298,75 +229,3 @@ If you're interested in learning more on how to create your own pipelines, devel
 | [Discord](https://discord.gg/uMbNqcraFc)                                                 | Join our community to discuss more. We would love to hear from you!                                |
 | [Twitter](https://twitter.com/nerfstudioteam)                                            | Follow us on Twitter @nerfstudioteam to see cool updates and announcements                         |
 | [Feedback Form](TODO)                                                                    | We welcome any feedback! This is our chance to learn what you all are using Nerfstudio for.        |
-
-# Supported Features
-
-We provide the following support structures to make life easier for getting started with NeRFs.
-
-**If you are looking for a feature that is not currently supported, please do not hesitate to contact the Nerfstudio Team on [Discord](https://discord.gg/uMbNqcraFc)!**
-
-- :mag_right: Web-based visualizer that allows you to:
-  - Visualize training in real-time + interact with the scene
-  - Create and render out scenes with custom camera trajectories
-  - View different output types
-  - And more!
-- :pencil2: Support for multiple logging interfaces (Tensorboard, Wandb), code profiling, and other built-in debugging tools
-- :chart_with_upwards_trend: Easy-to-use benchmarking scripts on the Blender dataset
-- :iphone: Full pipeline support (w/ Colmap, Polycam, or Record3D) for going from a video on your phone to a full 3D render.
-
-# Built On
-
-<a href="https://github.com/brentyi/tyro">
-<!-- pypi-strip -->
-<picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://brentyi.github.io/tyro/_static/logo-dark.svg" />
-<!-- /pypi-strip -->
-    <img alt="tyro logo" src="https://brentyi.github.io/tyro/_static/logo-light.svg" width="150px" />
-<!-- pypi-strip -->
-</picture>
-<!-- /pypi-strip -->
-</a>
-
-- Easy-to-use config system
-- Developed by [Brent Yi](https://brentyi.com/)
-
-<a href="https://github.com/KAIR-BAIR/nerfacc">
-<!-- pypi-strip -->
-<picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/3310961/199083722-881a2372-62c1-4255-8521-31a95a721851.png" />
-<!-- /pypi-strip -->
-    <img alt="tyro logo" src="https://user-images.githubusercontent.com/3310961/199084143-0d63eb40-3f35-48d2-a9d5-78d1d60b7d66.png" width="250px" />
-<!-- pypi-strip -->
-</picture>
-<!-- /pypi-strip -->
-</a>
-
-- Library for accelerating NeRF renders
-- Developed by [Ruilong Li](https://www.liruilong.cn/)
-
-# Citation
-
-You can find a paper writeup of the framework on [arXiv](https://arxiv.org/abs/2302.04264).
-
-If you use this library or find the documentation useful for your research, please consider citing:
-
-```
-@inproceedings{nerfstudio,
-	title        = {Nerfstudio: A Modular Framework for Neural Radiance Field Development},
-	author       = {
-		Tancik, Matthew and Weber, Ethan and Ng, Evonne and Li, Ruilong and Yi, Brent
-		and Kerr, Justin and Wang, Terrance and Kristoffersen, Alexander and Austin,
-		Jake and Salahi, Kamyar and Ahuja, Abhik and McAllister, David and Kanazawa,
-		Angjoo
-	},
-	year         = 2023,
-	booktitle    = {ACM SIGGRAPH 2023 Conference Proceedings},
-	series       = {SIGGRAPH '23}
-}
-```
-
-# Contributors
-
-<a href="https://github.com/nerfstudio-project/nerfstudio/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=nerfstudio-project/nerfstudio" />
-</a>
