@@ -7,7 +7,7 @@ This forked GitHub project is intented for folks who have little to know command
 
 I created two walkthrough videos to compliment the tutorial (coming soon). You can watch them independently or with this project page as reference. Please follow my YT channel for additional updates. Now let's get gaussian splatting with Nerfstudio!
 
-The section below is from the original GitHub page. Jump down to [Overview](#overview) to get started. <br>
+The section below is from the original GitHub page. Jump down to "Start Here" for the actual tutorial. <br>
 <br>
 <br>
 
@@ -34,19 +34,22 @@ We hope nerfstudio enables you to build faster :hammer: learn together :books: a
 <br>
 <br>
 
-# Getting Started
+# Installation
 
 
-
-## 1. Installation: Setup the environment
-
-### Prerequisites
+## Prerequisites
 
 You must have an NVIDIA video card with CUDA installed on the system. This library has been tested with version 11.8 of CUDA. You can find more information about installing CUDA [here](https://docs.nvidia.com/cuda/cuda-quick-start-guide/index.html)
 
-### Create environment
+Install [Git](https://git-scm.com/downloads).
+
+Install [Visual Studio 2022](https://learn.microsoft.com/en-us/visualstudio/install/install-visual-studio?view=vs-2022). _This must be done before installing CUDA._ The necessary components are included in the `Desktop Development with C++` workflow (also called `C++ Build Tools` in the BuildTools edition).
 
 Nerfstudio requires `python >= 3.8`. We recommend using conda to manage dependencies. Make sure to install [Conda](https://docs.conda.io/miniconda.html) before proceeding.
+
+## Create environment
+
+You will need to set up an environment on your PC to install dependencies and code. This next section will be completed primarily in command prompt. If you are new to command prompt, I suggest watching the installation video on my YouTube channel.
 
 ```bash
 conda create --name nerfstudio -y python=3.8
@@ -54,7 +57,7 @@ conda activate nerfstudio
 pip install --upgrade pip
 ```
 
-### Dependencies
+## Dependencies
 
 Install PyTorch with CUDA (this repo has been tested with CUDA 11.7 and CUDA 11.8) and [tiny-cuda-nn](https://github.com/NVlabs/tiny-cuda-nn).
 `cuda-toolkit` is required for building `tiny-cuda-nn`.
@@ -79,13 +82,10 @@ conda install -c "nvidia/label/cuda-11.8.0" cuda-toolkit
 pip install ninja git+https://github.com/NVlabs/tiny-cuda-nn/#subdirectory=bindings/torch
 ```
 
-See [Dependencies](https://github.com/nerfstudio-project/nerfstudio/blob/main/docs/quickstart/installation.md#dependencies)
-in the Installation documentation for more.
 
-### Installing nerfstudio
+## Installing nerfstudio
 
-You will need to build Nerfstudio from code to access guassian splatting.
-
+You will need to build Nerfstudio from source to access guassian splatting.
 
 ```bash
 git clone https://github.com/nerfstudio-project/nerfstudio.git
@@ -94,8 +94,10 @@ pip install --upgrade pip setuptools
 pip install -e .
 ```
 
+**Success! You have installed Nerfstudio!**
 
-## 2. Training your first model!
+
+# Training your first gaussian splat
 
 The following will train a _nerfacto_ model, our recommended model for real world scenes.
 
