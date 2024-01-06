@@ -99,11 +99,33 @@ pip install -e .
 
 # Training your first gaussian splat
 
-The following will train a _nerfacto_ model, our recommended model for real world scenes.
+The following will teach you how to train a gaussian splat scene with default settings. This is trained to 30,000 steps.
 
+## Launch the Nerfstudio environment
+Open command prompt and start your Nerfstudio conda environment:
 ```bash
-# Download some test data:
+conda activate nerfstudio
+```
+
+path to the nerfstudio folder
+```bash
+cd nerfstudio
+```
+
+## Download image data
+
+This this tutorial, we will use the open dataset provided by the Nerfstudio team. The following command will download an image set that is already prepared for training. 
+```bash
 ns-download-data nerfstudio --capture-name=poster
+```
+
+This downloads a folder of data into nerfstudio/data/nerfstudio/poster
+
+If you want to use your own data, check out the "Using your own data" section.
+
+
+
+
 # Train model
 ns-train nerfacto --data data/nerfstudio/poster
 ```
