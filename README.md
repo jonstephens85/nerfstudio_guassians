@@ -119,15 +119,16 @@ This this tutorial, we will use the open dataset provided by the Nerfstudio team
 ns-download-data nerfstudio --capture-name=poster
 ```
 
-This downloads a folder of data into nerfstudio/data/nerfstudio/poster
+This downloads a folder of data into: /nerfstudio/data/nerfstudio/poster.  The result should look like this:
+<img src="assets/Folderdata.png" width="50%"/>
 
 If you want to use your own data, check out the "Using your own data" section.
 
+# Train the gaussian splat
+Next, you will initiate training of the gaussian splat scene.
 
-
-
-# Train model
-ns-train nerfacto --data data/nerfstudio/poster
+```bash
+ns-train gaussian-splatting --data data/nerfstudio/poster
 ```
 
 If everything works, you should see training progress like the following:
