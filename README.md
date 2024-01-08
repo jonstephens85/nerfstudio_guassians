@@ -190,7 +190,7 @@ Currently, this must be performed with command line. The export section of the v
 You can export the splat ply by running
 
 ```bash
-ns-export gassian-splat --load-config {outputs/.../config.yml} --export-dir {path/to/directory}
+ns-export gaussian-splat --load-config {outputs/.../config.yml} --output-dir {path/to/directory}
 ```
 
 Learn about the export options by running
