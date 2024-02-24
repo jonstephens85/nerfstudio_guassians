@@ -83,9 +83,20 @@ pip install ninja git+https://github.com/NVlabs/tiny-cuda-nn/#subdirectory=bindi
 ```
 
 
-## Installing nerfstudio
+## Installing Nerfstudio
 
-You will need to build Nerfstudio from source to access guassian splatting.
+### Method 1: Install via PIP
+
+This method is the easiest!
+
+```bash
+pip install nerfstudio
+```
+
+
+### Method 2: Install Via Source 
+
+From source is **Optional**, use this command if you want the latest development version.
 
 ```bash
 git clone https://github.com/nerfstudio-project/nerfstudio.git
@@ -95,6 +106,30 @@ pip install -e .
 ```
 
 **Success! You have installed Nerfstudio!**
+
+## Updating Nerfstudio
+
+From time to time you will want to update your version of Nerfstudio. For example, to upgrading to version 1.0.0 to access gaussian splatting. This can be done with a few simple steps.
+
+### Method 1: Update via PIP
+
+Use this version if you installed Nerfstudio via pip:
+
+```bash
+pip install --upgrade nerfstudio
+```
+
+### Method 2: Update via source code
+
+Use this version if you installed Nerfstudio via source code:
+
+```bash
+CD Nerfstudio
+Git Pull
+pip install -e .
+```
+
+
 
 
 # Training your first gaussian splat
