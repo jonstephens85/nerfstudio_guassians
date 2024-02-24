@@ -81,6 +81,8 @@ pip install torch==2.0.1+cu118 torchvision==0.15.2+cu118 --extra-index-url https
 conda install -c "nvidia/label/cuda-11.8.0" cuda-toolkit
 pip install ninja git+https://github.com/NVlabs/tiny-cuda-nn/#subdirectory=bindings/torch
 ```
+<br>
+<br>
 
 
 ## Installing Nerfstudio
@@ -106,6 +108,9 @@ pip install -e .
 ```
 
 **Success! You have installed Nerfstudio!**
+<br>
+<br>
+
 
 ## Updating Nerfstudio
 
@@ -128,8 +133,8 @@ CD Nerfstudio
 Git Pull
 pip install -e .
 ```
-
-
+<br>
+<br>
 
 
 # Training your first gaussian splat
@@ -163,7 +168,7 @@ If you want to use your own data, check out the [Using Custom Data](#using-custo
 Next, you will initiate training of the gaussian splat scene.
 
 ```bash
-ns-train gaussian-splatting --data data/nerfstudio/poster
+ns-train splatfacto --data data/nerfstudio/poster
 ```
 
 If everything works, you should see training progress like the following:
@@ -187,13 +192,13 @@ Navigating to the link at the end of the terminal will load the webviewer. If yo
 It is possible to resume training a checkpoint by running
 
 ```bash
-ns-train gaussian-splatting --data data/nerfstudio/poster --load-dir {outputs/.../nerfstudio_models}
+ns-train splatfacto --data data/nerfstudio/poster --load-dir {outputs/.../nerfstudio_models}
 ```
 
 You can launch any pre-trained model checkpoint into the viewer without initiating further training by running
 
 ```bash
-ns-viewer --load-config {outputs/.../config.yml} --vis viewer_beta
+ns-viewer --load-config {outputs/.../config.yml}
 ```
 
 This is recommended if you want to load a project you fully trained in command line and are coming back to later visualize and create video renders.
@@ -220,7 +225,7 @@ ns-render --help
 
 ### Generate a Guassian Splat
 
-Currently, this must be performed with command line. The export section of the viewer does not function correctly with gaussin splats.
+Currently, this must be performed with command line. The export section of the viewer does not function correctly with gaussian splats.
 
 You can export the splat ply by running
 
@@ -239,31 +244,18 @@ ns-export gaussian-splat --help
 The gaussian splatting training model contains many parameters that can be changed. Use the `--help` command to see the full list of configuration options.
 
 ```bash
-ns-train gaussian-splatting --help
+ns-train splatfacto --help
 ```
 
 
 ## Using Custom Data
 
-Using an existing dataset is great, but likely you want to use your own data! Nerfstudio supports various methods for using your own data. Before it can be used in nerfstudio, the camera location and orientations must be determined and then converted into our format using `ns-process-data`. Nerfstudio relies on external tools for this, instructions and information can be found in the documentation.
+Using an existing dataset is great, but likely you want to use your own data! At this point, Nerfstudio's gaussian splatting pipeline only supports image and video via COLMAP.
 
 | Data                                                                                          | Capture Device | Requirements                                                      | `ns-process-data` Speed |
 | --------------------------------------------------------------------------------------------- | -------------- | ----------------------------------------------------------------- | ----------------------- |
 | 📷 [Images](https://docs.nerf.studio/quickstart/custom_dataset.html#images-or-video)          | Any            | [COLMAP](https://colmap.github.io/install.html)                   | 🐢                      |
 | 📹 [Video](https://docs.nerf.studio/quickstart/custom_dataset.html#images-or-video)           | Any            | [COLMAP](https://colmap.github.io/install.html)                   | 🐢                      |
-| 🌎 [360 Data](https://docs.nerf.studio/quickstart/custom_dataset.html#data-equirectangular)   | Any            | [COLMAP](https://colmap.github.io/install.html)                   | 🐢                      |
-| 📱 [Polycam](https://docs.nerf.studio/quickstart/custom_dataset.html#polycam-capture)         | IOS with LiDAR | [Polycam App](https://poly.cam/)                                  | 🐇                      |
-| 📱 [KIRI Engine](https://docs.nerf.studio/quickstart/custom_dataset.html#kiri-engine-capture) | IOS or Android | [KIRI Engine App](https://www.kiriengine.com/)                    | 🐇                      |
-| 📱 [Record3D](https://docs.nerf.studio/quickstart/custom_dataset.html#record3d-capture)       | IOS with LiDAR | [Record3D app](https://record3d.app/)                             | 🐇                      |
-| 📱 [Spectacular AI](https://docs.nerf.studio/quickstart/custom_dataset.html#spectacularai)    | IOS, OAK, [others](https://www.spectacularai.com/mapping#supported-devices) | [App](https://apps.apple.com/us/app/spectacular-rec/id6473188128) / [`sai-cli`](https://www.spectacularai.com/mapping) | 🐇 |
-| 🖥 [Metashape](https://docs.nerf.studio/quickstart/custom_dataset.html#metashape)             | Any            | [Metashape](https://www.agisoft.com/)                             | 🐇                      |
-| 🖥 [RealityCapture](https://docs.nerf.studio/quickstart/custom_dataset.html#realitycapture)   | Any            | [RealityCapture](https://www.capturingreality.com/realitycapture) | 🐇                      |
-| 🖥 [ODM](https://docs.nerf.studio/quickstart/custom_dataset.html#odm)                         | Any            | [ODM](https://github.com/OpenDroneMap/ODM)                        | 🐇                      |
-| 👓 [Aria](https://docs.nerf.studio/quickstart/custom_dataset.html#aria)                       | Aria glasses   | [Project Aria](https://projectaria.com/)                          | 🐇                      |
-| 🛠 [Custom](https://docs.nerf.studio/quickstart/data_conventions.html)                        | Any            | Camera Poses                                                      | 🐇                      |
-
-
-
 
 
 # Learn More
